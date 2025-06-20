@@ -37,7 +37,7 @@ public:
 
 void addStudent(){
     string id,n,course;
-
+    cin.ignore();
     cout<<"Enter your name : ";
     getline(cin,n);
 
@@ -59,7 +59,8 @@ void addStudent(){
 void addCourse(){
     string code,name;
     int total,seats;
-
+    
+    cin.ignore();
     cout<<"Enter course name : ";
     getline(cin,name);
 
@@ -93,7 +94,7 @@ void deleteStudent(){
 
      while(getline(in,fullline)){
       size_t commaPos = fullline.find(',');
-      id = fullline.substr(0,commaPos);
+      id = fullline.substr(0, commaPos);
 
       if(id != requiredID){
         out<<fullline<<endl;

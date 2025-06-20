@@ -105,7 +105,7 @@ void deleteStudent(){
      in.close();
      out.close();
 
-     remove("student.text");
+     remove("student.txt");
      rename("temp.txt","student.txt");
 
      if(found){

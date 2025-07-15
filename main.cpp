@@ -2,6 +2,7 @@
 #include<string>
 #include<vector>
 #include<fstream>
+#include<sstream>
 #include<algorithm>
 using namespace std;
   
@@ -277,20 +278,37 @@ void deleteCourse(){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void viewAllCourses(){
-  ifstream in("course.txt");
-  string name,code;
-  int total ,seats;
+void viewAllCourses() {
+    ifstream in("course.txt");
+    if (!in.is_open()) {
+        cout << "Error: Could not open course.txt!" << endl;
+        return;
+    }
 
-  cout<<"All Courses list"<<endl;
+    cout << "All Courses list:" << endl;
 
-  while(in >> code){
-    getline(in, name ,',');
-    in>>total>>seats;
-    cout<< code <<","<< name <<","<< total <<","<< seats<<endl;
-  }
-  in.close();
-}
+    string line;
+    while (getline(in, line)) { 
+        stringstream ss(line);  
+        string code, name;
+        int total, seats;
+
+       
+        getline(ss, code, ',');
+
+       
+        getline(ss, name, ',');
+
+       
+        char comma; 
+        ss >> total >> comma >> seats;
+             cout << "Code: " << code 
+             << ", Name: " << name 
+             << ", Total: " << total 
+             << ", Seats: " << seats << endl;
+    }
+
+    in.close();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void registerStudentToCourse() {
